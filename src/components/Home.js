@@ -71,8 +71,8 @@ export default function FullWidthTabs() {
                     aria-label="full width tabs example"
                 >
                     <Tab label="RealTime" {...a11yProps(0)} />
-                    <Tab label="Yearly" {...a11yProps(1)} />
-                    <Tab label="Month" {...a11yProps(2)} />
+                    <Tab label="Year Data" {...a11yProps(1)} />
+                    <Tab label="Month Data" {...a11yProps(2)} />
                 </Tabs>
             </AppBar>
             <SwipeableViews

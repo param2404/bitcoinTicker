@@ -60,14 +60,18 @@ export default function Chart() {
         }]
     })
  
-
     useEffect(() => {
         fetchData()
-        startUpdatingData()
-        return function cleanup() {
-            clearTimeout()
-        };
     }, [])
+
+
+    useEffect(() => {
+        const clock = setInterval(() => {
+            startUpdatingData()
+        }, 2000)
+        return () => clearInterval(clock)
+    }, [dataSource])
+
 
     
     const fetchData = () => {
@@ -95,7 +99,6 @@ export default function Chart() {
 
 
     const startUpdatingData = () => {
-        setInterval(() => {
             api().get('/currencies/ticker?key=demo-26240835858194712a4f8cc0dc635c7a&ids=BTC')
                 .then(response => {
                     let x_axis = clientDateTime();
@@ -105,7 +108,6 @@ export default function Chart() {
                 }).catch((error) => {
                     console.log('error', error)
                 })
-        }, 2000);
     }
 
     return (
